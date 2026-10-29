@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmallzDealership</title>
+    
+    <!-- Importing Font Awesome for Icons (Profile, Menu, etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Importing Google Fonts (Roboto) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- RESET & BASIC STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER / NAVBAR --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #0d0d0d; /* Very dark grey */
+            padding: 15px 20px;
+            position: relative;
+            z-index: 100;
+        }
+
+        /* Left Side: Hamburger Menu */
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        /* Center: Logo */
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .logo-text {
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 1px;
+            color: #ccc;
+        }
+        
+        .logo-subtext {
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: #666;
+        }
+
+        /* Right Side: Profile Icon */
+        .profile-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        /* --- HERO SECTION (Car Image) --- */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 350px; /* Adjust height based on your needs */
+            background-image: url('AggFordlineup.jpeg'); /* Placeholder Car Image */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Dark Overlay to make text readable */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 10;
+            font-size: 32px;
+            font-weight: 500;
+            color: #fff;
+            text-align: center;
+        }
+
+        /* --- CONTENT SECTION --- */
+        .content {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #000;
+        }
+
+        .headline {
+            font-size: 22px;
+            font-weight: 400;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .sub-headline {
+            font-size: 18px;
+            font-weight: 300;
+            color: #ccc;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        /* --- "CHAT WITH US" BUTTON --- */
+        .chat-btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .chat-btn {
+            background-color: #fff;
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: background 0.3s;
+        }
+
+        .chat-btn:hover {
+            background-color: #eee;
+        }
+
+        /* --- FLOATING WHATSAPP BUTTON --- */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 20px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Bottom Border Line (Visual Tweak) */
+        .bottom-border {
+            border-top: 1px solid #333;
+            padding: 20px;
+        }
+
+           /* --- DEALERSHIP CARDS STYLES --- */
+        .dealership-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; 
+            margin-top: 30px;
+            margin-bottom: 40px;
+            padding: 0 10px;
+        }
+
+        .dealer-card {
+            background-color: #000;
+            border: 1px solid #444; 
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .logo-lockup {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .logo-agg {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+
+        .logo-divider {
+            height: 20px;
+            width: 1px;
+            background-color: #666;
+        }
+
+        .logo-brand {
+            font-size: 14px;
+            color: #ccc;
+            line-height: 1.1;
+            text-align: left;
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            letter-spacing: 5px;
+            color: #fff;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .dealer-title {
+            font-size: 18px;
+            font-weight: 400;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        /* --- LATEST USED CARS SECTION --- */
+        .latest-cars-section {
+            padding: 20px 0;
+            text-align: left;
+        }
+
+        .section-header {
+            padding: 0 20px;
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 {
+            font-size: 22px;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .section-header span {
+            color: #4da6ff; /* The blue color for "Used Cars" */
+        }
+
+        /* The horizontal scrolling area */
+        .car-scroll-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 15px;
+            padding: 0 20px 20px 20px; /* Bottom padding for shadow */
+            /* Hide scrollbar for cleaner look */
+            -ms-overflow-style: none;  
+            scrollbar-width: none;  
+        }
+        .car-scroll-container::-webkit-scrollbar { 
+            display: none; 
+        }
+
+        /* Individual Car Card */
+        .car-card {
+            min-width: 85%; /* Shows the edge of the next card */
+            max-width: 300px;
+            background-color: #1a1a1e; /* Dark grey background */
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .car-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 180px;
+        }
+
+        .car-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* The blue "Used" ribbon */
+        .used-badge {
+            position: absolute;
+            top: 15px;
+            left: -25px;
+            background-color: #1da1f2;
+            color: white;
+            padding: 5px 30px;
+            transform: rotate(-45deg);
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .car-details {
+            padding: 15px;
+        }
+
+        .car-title {
+            font-size: 16px;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .car-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        /* Specs row (Km, Auto, Petrol) */
+        .car-specs {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 13px;
+            color: #999;
+            border-top: 1px solid #333;
+            padding-top: 15px;
+        }
+
+        .spec-highlight {
+            background-color: #1da1f2;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Navigation Arrows Container */
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        /* The Blue Arrow Buttons */
+        .nav-arrow {
+            background-color: #1da1f2;
+            color: white;
+            border: none;
+            width: 45px;
+            height: 40px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .nav-arrow:hover {
+            background-color: #0d8ddb;
+        }
+        /* --- JETOUR SLIDER SECTION STYLES --- */
+        .jetour-slider-section {
+            text-align: center;
+            margin-top: 40px;
+            padding-bottom: 20px;
+        }
+
+        .slider-title {
+            color: #fff;
+            font-size: 22px;
+            font-weight: 400;
+            margin: 25px 0;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        /* Outline Buttons */
+        .slider-action-btn-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .outline-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            text-decoration: none;
+            border: 2px solid #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .outline-btn:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        /* Main Slider Container */
+        .main-slider {
+            position: relative;
+            width: 100%;
+            height: 250px; /* Adjust height as needed */
+            overflow: hidden;
+        }
+
+        /* Individual Slides */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures image covers the area without stretching */
+        }
+
+        /* Small logo in top right corner */
+        .slide-logo-overlay {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #fff;
+            font-size: 10px;
+            text-align: right;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+        .slide-logo-overlay span {
+            font-size: 8px;
+            letter-spacing: 2px;
+        }
+
+        /* Left and Right Arrows */
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            color: #fff;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 10;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.8); /* Makes arrows visible on any image */
+        }
+
+        .left-arrow {
+            left: 15px;
+        }
+
+        .right-arrow {
+            right: 15px;
+        }
+
+        /* Dots at the bottom */
+        .slider-dots {
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background-color: #1da1f2; /* Blue active dot */
+            width: 10px;
+            height: 10px;
+            transform: translateY(-1px);
+        }
+ </style>
+</head>
+<body>
+
+    <!-- 1. HEADER / TOP BAR -->
+    <header class="navbar">
+        <!-- Hamburger Menu Icon -->
+        <i class="fa-solid fa-bars menu-icon"></i>
+
+        <!-- Logo -->
+        <div class="logo-container">
+            <!-- Using FontAwesome icon as a placeholder for the logo -->
+            <i class="fa-solid fa-mountain-sun" style="font-size: 24px; color: #fff;"></i>
+            <div class="logo-text">Smalls</div>
+            <div class="logo-subtext">Dealership</div>
+        </div>
+
+        <!-- Profile Icon -->
+        <i class="fa-solid fa-user-group profile-icon"></i>
+    </header>
+
+    <!-- 2. HERO IMAGE -->
+    <section class="hero">
+        <h1 class="hero-text"></h1>
+    </section>
+
+    <!-- 3. CONTENT AREA -->
+    <section class="content">
+        <h2 class="headline">From pre-owned value to brand-new confidence.</h2>
+        <p class="sub-headline">Explore quality vehicles from Jetour, JAC, and more. All under one trusted roof.</p>        <!-- START OF NEW CARDS -->        <!-- START JETOUR SLIDER SECTION -->
+        <div class="jetour-slider-section">
+            
+            <!-- Top Button -->
+            <div class="slider-action-btn-wrapper">
+                <a href="#" class="outline-btn">View Pre-Owned Showroom <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Section Title -->
+            <h2 class="slider-title">Jetour New Vehicles</h2>
+
+            <!-- The Main Slider -->
+            <div class="main-slider">
+                
+                <!-- Slide 1 -->
+                <div class="slide active">
+                    <!-- REPLACE 'AggJetour.jpeg' WITH YOUR FIRST IMAGE FILENAME -->
+                    <img src="AggJetour.jpeg" alt="Jetour New Vehicle 1">
+                    <!-- Optional: Small logo overlay top right -->
+                    <div class="slide-logo-overlay">JETOUR<br><span>WESTRAND</span></div>
+                </div>
+
+                <!-- Slide 2 (Add more slides like this) -->
+                <div class="slide">
+                    <!-- REPLACE WITH YOUR SECOND IMAGE FILENAME -->
+                    <img src="AggJetour.jpeg" alt="Jetour New Vehicle 2">
+                    <div class="slide-logo-overlay">JETOUR<br><span>WESTRAND</span></div>
+                </div>
+
+                <!-- Slide 3 (Add more slides like this) -->
+                <div class="slide">
+                    <img src="AggJetour.jpeg" alt="Jetour New Vehicle 3">
+                    <div class="slide-logo-overlay">JETOUR<br><span>WESTRAND</span></div>
+                </div>
+
+                <!-- Navigation Arrows (Overlaid on image) -->
+                <button class="slider-arrow left-arrow" id="prevSlide"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="slider-arrow right-arrow" id="nextSlide"><i class="fa-solid fa-chevron-right"></i></button>
+
+                <!-- Dots indicator (Bottom center) -->
+                <div class="slider-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+
+            </div>
+
+            <!-- Bottom Button -->
+            <div class="slider-action-btn-wrapper" style="margin-top: 20px;">
+                <a href="#" class="outline-btn">AGG Jetour Westrand <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+        </div>
+        <!-- END JETOUR SLIDER SECTION -->
+        <div class="dealership-cards">
+            
+            <!-- Card 1 -->
+            <div class="dealer-card">
+                <div class="logo-lockup">
+                    <span class="logo-agg">AGG</span>
+                    <span class="logo-divider"></span>
+                    <span class="logo-brand">PRE-OWNED</span>
+                </div>
+                <div class="logo-sub">W E S T R A N D</div>
+                <h3 class="dealer-title">AGG Westrand Pre-Owned</h3>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="dealer-card">
+                <div class="logo-lockup">
+                    <span class="logo-agg">AGG</span>
+                    <span class="logo-divider"></span>
+                    <span class="logo-brand" style="font-weight: bold; font-style: italic;">JAC</span>
+                </div>
+                <div class="logo-sub">W E S T R A N D</div>
+                <h3 class="dealer-title">AGG JAC Westrand</h3>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="dealer-card">
+                <div class="logo-lockup">
+                    <span class="logo-agg">AGG</span>
+                    <span class="logo-divider"></span>
+                    <span class="logo-brand" style="letter-spacing: 1px;">JETOUR</span>
+                </div>
+                <div class="logo-sub">W E S T R A N D</div>
+                <h3 class="dealer-title">AGG Jetour Westrand</h3>
+            </div>
+
+        </div>
+        <!-- END OF NEW CARDS -->
+        
+               <!-- START LATEST USED CARS SECTION -->
+        <div class="latest-cars-section">
+            
+            <div class="section-header">
+                <h2>Latest <span>Used Cars</span></h2>
+            </div>
+
+            <!-- Scrollable Container -->
+            <div class="car-scroll-container" id="carCarousel">
+                
+                <!-- Card 1 (Your Image) -->
+                <div class="car-card">
+                    <div class="car-image-wrapper">
+                        <!-- Notice the src matches your image name -->
+                        <img src="AggJetour.jpeg" alt="2026 Jetour Dashing">
+                        <div class="used-badge">Used</div>
+                    </div>
+                    <div class="car-details">
+                        <h3 class="car-title">2026 JETOUR Dashing</h3>
+                        <p class="car-price">R389,900</p>
+                        <div class="car-specs">
+                            <span class="spec-highlight">100 km's</span>
+                            <span>Automatic</span>
+                            <span>Petrol</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Placeholder Card 2 (To show scrolling works) -->
+                <div class="car-card">
+                    <div class="car-image-wrapper" style="background-color: #333; height: 200px; display:flex; align-items:center; justify-content:center; color:#666;">
+                        <i class="fa-solid fa-car" style="font-size: 50px;"></i>
+                    </div>
+                    <div class="car-details">
+                        <h3 class="car-title">2024 JAC T8</h3>
+                        <p class="car-price">R299,900</p>
+                        <div class="car-specs">
+                            <span class="spec-highlight">5,000 km's</span>
+                            <span>Manual</span>
+                            <span>Diesel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- You can duplicate the <div class="car-card"> block 20 times for your 20 pictures -->
+
+            </div>
+
+            <!-- Navigation Arrows -->
+            <div class="carousel-nav">
+                <button id="prevBtn" class="nav-arrow"><i class="fa-solid fa-chevron-left"></i></button>
+                <button id="nextBtn" class="nav-arrow"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+
+        </div>
+        <!-- END LATEST USED CARS SECTION -->
+ <!-- Chat Button -->
+        <div class="chat-btn-container">
+            <button class="chat-btn">
+                Need Help? Chat with us
+            </button>
+        </div>
+    </section>
+
+    <!-- 4. BOTTOM SECTION / SEPARATOR -->
+    <div class="bottom-border"></div>
+
+    <!-- 5. FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/27625882037" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <!-- SCRIPT FOR JETOUR IMAGE SLIDER -->
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.getElementById('prevSlide');
+        const nextBtn = document.getElementById('nextSlide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            // Remove active class from all slides and dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            // Add active class to the current slide and dot
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Event listeners for arrows
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Event listeners for dots
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+            });
+        });
+    </script>
+
+</body>
+</html>
